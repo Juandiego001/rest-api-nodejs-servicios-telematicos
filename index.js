@@ -1,7 +1,7 @@
-express = require('express')
-cors = require('cors')
-app = express()
-
+const express = require('express');
+const cors = require('cors');
+const app = express();
+const port = 3000;
 // Middlewares
 app.use(cors())
 
@@ -51,4 +51,8 @@ app.delete('/books/<book_id>', (req, res) => {
     }
 
     res.json(theBook);
+})
+
+app.listen(port, () => {
+  console.log('Server listening on port %d', port);
 })

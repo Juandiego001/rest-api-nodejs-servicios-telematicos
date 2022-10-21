@@ -28,16 +28,18 @@ app.get('/books', (req, res) => {
     res.json(books);
 });
 
-// For testing: curl -i -H "Content-Type: application/json" -X POST -d '{"title":"El libro"}' http://192.168.56.3:5000/books
+// For testing: curl -i -H "Content-Type: application/json" -X POST -d '{"title":"El libro"}' http://192.168.56.3:3000/books
 app.post('/books', (req, res) => {
-    console.log(req.params);
-    console.log(req.body);
-    console.log(req.query);
+  console.log('Trying to do POST...');
+  console.log(req);
 })
 
 // Edit a Book
-// For testing: curl -i -H "Content-Type: application/json" -X PUT -d '{"author":"Jorgito"}' http://localhost:5000/books/2
-app.delete('/books/<book_id>', (req, res) => {
+// For testing: curl -i -H "Content-Type: application/json" -X PUT -d '{"author":"Jorgito"}' http://192.168.56.3:3000/books/2
+app.put('/books/<book_id>', (req, res) => {
+    console.log('Trying to do put...');
+    console.log(req);
+
     theBook = {};
 
     theBook['title'] = req.query.title || '';
@@ -53,6 +55,14 @@ app.delete('/books/<book_id>', (req, res) => {
     res.json(theBook);
 })
 
+// Delete a Book
+// For testing: curl -i -H "Content-Type: application/json" -X DELETE http://192.168.56.3:3000/books/1
+app.delete('/books/<book_id>', (req, res) => {
+  console.log('Trying to do DELETE...');
+  console.log(req);
+})
+
+// Start listening server
 app.listen(port, () => {
   console.log('Server listening on port %d', port);
 })
